@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(doubleJump)
                 {
-                    rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                    rig.AddForce(new Vector2(0f, JumpForce * 0.6f), ForceMode2D.Impulse);
                     doubleJump = false;
                     anim.SetBool("jump", true);
                 }
