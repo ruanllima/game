@@ -5,31 +5,30 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
 
-    private float length;
-    private float StartPosition;
-    private Transform cam;
+    private float startPos, length;
+    public GameObject cam;
     public float ParallaxEffect;
 
     void Start()
     {
-        StartPosition = transform.position.x;
+        startPos = transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
-        cam = Camera.main.transform;
     }
 
-    void Update()
+    void FixedUpdate()
     {   
-        float RePos = cam.transform.position.x * (1 -  ParallaxEffect);
-     // Move the background based on the camera's position
         float Distance = cam.transform.position.x * ParallaxEffect;
-        transform.position = new Vector3(StartPosition + Distance, transform.position.y, transform.position.z);
+        float movement = cam.transform.position.x * (1 - ParallaxEffect);
+        transform.position = new Vector3(startPos + Distance, transform.position.y, transform.position.z);
 
-    
-        if (RePos > StartPosition + length){
-            StartPosition += length;
+        if(movement > startPos + length)
+        {
+            startPos += length;
         }
-        else if (RePos < StartPosition - length){
-            StartPosition -= length;
+        else if(movement < startPos - length)
+        {
+            startPos -= length;
         }
+
     }   
 }
