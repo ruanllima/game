@@ -11,6 +11,7 @@ public class gameController : MonoBehaviour
     public TextMeshProUGUI scoreText;   
     public static gameController instance;
     public GameObject winCanvas;
+    public GameObject loserCanvas;
 
     void Start()
     {
@@ -22,13 +23,22 @@ public class gameController : MonoBehaviour
         scoreText.text = totalScore.ToString();
     }
 
-    public void ChangeScene(string sceneName)
-    {
+    public void ChangeScene(string sceneName = "")
+    {   
+        if(string.IsNullOrEmpty(sceneName))
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+        }
         SceneManager.LoadScene(sceneName);
     }
 
     public void showWinCanvas()
     {
         winCanvas.gameObject.SetActive(true);
+    }
+
+    public void showLoseCanvas()
+    {
+        loserCanvas.gameObject.SetActive(true);
     }
 }

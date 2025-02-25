@@ -80,6 +80,14 @@ public class PlayerController : MonoBehaviour
         {
             gameController.instance.showWinCanvas();
         }
+
+        if(collision.gameObject.tag == "Spike")
+        {
+            gameController.instance.showLoseCanvas();
+            Destroy(gameObject); 
+        }
+
+
     }
 
     void OnCollisionExit2D(Collision2D collision){

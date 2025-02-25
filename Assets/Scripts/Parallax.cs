@@ -6,8 +6,10 @@ public class Parallax : MonoBehaviour
 {
 
     private float startPos, length;
+    public GameObject target;
     public GameObject cam;
     public float ParallaxEffect;
+    private float upPos;
 
     void Start()
     {
@@ -17,10 +19,11 @@ public class Parallax : MonoBehaviour
 
     void FixedUpdate()
     {   
-        float Distance = cam.transform.position.x * ParallaxEffect;
-        float movement = cam.transform.position.x * (1 - ParallaxEffect);
+        
+        float Distance = target.transform.position.x * ParallaxEffect;
+        float movement = cam.transform.position.x; /* * (1 - ParallaxEffect);*/
         transform.position = new Vector3(startPos + Distance, transform.position.y, transform.position.z);
-
+        
         if(movement > startPos + length)
         {
             startPos += length;
