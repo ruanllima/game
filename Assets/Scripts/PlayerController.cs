@@ -75,6 +75,11 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
             anim.SetBool("jump", false);
         }
+
+        if(collision.gameObject.tag == "Win")
+        {
+            gameController.instance.showWinCanvas();
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision){

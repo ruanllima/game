@@ -10,6 +10,7 @@ public class gameController : MonoBehaviour
     public int totalScore;
     public TextMeshProUGUI scoreText;   
     public static gameController instance;
+    public GameObject winCanvas;
 
     void Start()
     {
@@ -24,5 +25,10 @@ public class gameController : MonoBehaviour
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void showWinCanvas()
+    {
+        winCanvas.gameObject.SetActive(true);
     }
 }
