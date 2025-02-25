@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,9 +10,15 @@ public class PlayerController : MonoBehaviour
     public float JumpForce;
     public bool isJumping;
     public bool doubleJump;
-
+    private InputAction jumpAction;
     private Rigidbody2D rig;
     private Animator anim;
+
+    private void Awake()
+    {
+        var playerInput = GetComponent<PlayerInput>();
+        jumpAction = playerInput.actions["Jump"];
+    }
 
     void Start()
     {
@@ -48,7 +56,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Jump(){
-        if(Input.GetButtonDown("Jump"))
+        if(jumpAction.WasPressedThisFrame())
         {
 
             if(!isJumping)
@@ -79,6 +87,8 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.tag == "Win")
         {
             gameController.instance.showWinCanvas();
+            Destroy(gameObject); 
+
         }
 
         if(collision.gameObject.tag == "Spike")
