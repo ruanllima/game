@@ -13,24 +13,29 @@ public class PlayerController : MonoBehaviour
     private InputAction jumpAction;
     private Rigidbody2D rig;
     private Animator anim;
+    public GameObject hintCanvas;
+    private bool activeHintCanvas;
 
     private void Awake()
-    {
+    {  
         var playerInput = GetComponent<PlayerInput>();
         jumpAction = playerInput.actions["Jump"];
     }
 
     void Start()
-    {
+    {   
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
+        
+        activeHintCanvas = hintCanvas.activeSelf;
+        if(!activeHintCanvas){
+            Move();
+            Jump();
+        }
     }
 
     void Move(){

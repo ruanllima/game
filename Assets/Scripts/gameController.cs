@@ -41,4 +41,14 @@ public class gameController : MonoBehaviour
     {
         loserCanvas.gameObject.SetActive(true);
     }
+
+    public void showCanvas(GameObject canvas)
+    {
+        canvas.gameObject.SetActive(true);
+    }
+
+    public void hideCanvas(GameObject canvas)
+    {
+        canvas.gameObject.SetActive(false);
+    }
 }
