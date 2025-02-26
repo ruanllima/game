@@ -12,7 +12,7 @@ public class gameController : MonoBehaviour
     public static gameController instance;
     public GameObject winCanvas;
     public GameObject loserCanvas;
-
+    public string[] scenes;
     void Start()
     {
         instance = this;
@@ -50,5 +50,14 @@ public class gameController : MonoBehaviour
     public void hideCanvas(GameObject canvas)
     {
         canvas.gameObject.SetActive(false);
+    }
+
+    // Checks the current level and gets the value for next level and loads the scene for that level
+    public void loadNextLevel(){
+        string currentScene = SceneManager.GetActiveScene().name;
+        string[] array = currentScene.Split(" ");
+        int lvl = int.Parse(array[1]);
+        string nextLevel = "lvl " + (lvl + 1);
+        SceneManager.LoadScene(nextLevel);
     }
 }

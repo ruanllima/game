@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     private InputAction jumpAction;
     private Rigidbody2D rig;
     private Animator anim;
-    public GameObject hintCanvas;
-    private bool activeHintCanvas;
+    public GameObject anyCanvas;
+    private bool activeanyCanvas = false;
 
     private void Awake()
     {  
@@ -29,10 +29,15 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
-    {
-        
-        activeHintCanvas = hintCanvas.activeSelf;
-        if(!activeHintCanvas){
+    {   
+
+        // Block the player movement if any canvas is active
+        if(anyCanvas != null)
+        {
+            activeanyCanvas = anyCanvas.activeSelf;
+
+        }
+        if(!activeanyCanvas){
             Move();
             Jump();
         }
